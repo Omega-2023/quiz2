@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-const initialTime = 6600;
+const initialTime = 8100;
 const initialState = {
   currentTime: initialTime,
 };
