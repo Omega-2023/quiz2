@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { FaRightLong } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 
 function QuestionNavigation() {
+  return (
+    <div className="w-full bg-white border-t-2 h-[1.2cm] fixed bottom-0 left-0 flex flex-row justify-center gap-3 px-3 items-center text-gray-500">
+      Copyright @ 2018 Assessment Technologies Institute, LLC. All Rights
+      reserved.
+    </div>
+  );
+}
+
+export const NextButton = () => {
   const dispatch = useDispatch();
   const { currentQuestion, questions } = useSelector(
     (state) => state.questions
@@ -9,15 +19,15 @@ function QuestionNavigation() {
 
   const totalQuestions = questions.length;
 
-  const handlePrevQuestion = () => {
-    if (currentQuestion === 1) {
-      return null;
-    }
-    dispatch({
-      type: "setCurrentQuestion",
-      payload: currentQuestion - 1,
-    });
-  };
+  // const handlePrevQuestion = () => {
+  //   if (currentQuestion === 1) {
+  //     return null;
+  //   }
+  //   dispatch({
+  //     type: "setCurrentQuestion",
+  //     payload: currentQuestion - 1,
+  //   });
+  // };
 
   const handleSubmit = () => {
     dispatch({
@@ -44,28 +54,16 @@ function QuestionNavigation() {
   };
 
   return (
-    <div className="w-full bg-light-primary h-[1.5cm] fixed bottom-0 left-0 flex flex-row justify-end gap-3 px-3 items-center">
-      <div>
-        <button
-          onClick={() => handlePrevQuestion()}
-          className={`disabled:opacity-20 px-4 rounded-md text-white font-medium bg-gray-700 py-2`}
-          disabled={currentQuestion === 1}
-        >
-          Previous
-        </button>
+    <div
+      className=" flex flow-row px-4 justify-end"
+      onClick={() => handleNextQuestion()}
+    >
+      <div className=" flex justify-start items-center relative cursor-pointer">
+        <FaRightLong size={100} className=" text-gray-200" />
+        <span className=" px-3 text-[12px] absolute">CONTINUE</span>
       </div>
-      <button
-        onClick={() => handleNextQuestion()}
-        className={`disabled:opacity-20 px-4 rounded-md text-white font-medium py-2 capitalize ${
-          currentQuestion / totalQuestions === 1
-            ? " bg-emerald-600"
-            : "bg-primary "
-        }`}
-      >
-        {currentQuestion / totalQuestions === 1 ? "submit" : "next"}
-      </button>
     </div>
   );
-}
+};
 
 export default QuestionNavigation;

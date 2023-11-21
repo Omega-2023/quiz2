@@ -21,8 +21,13 @@
   color: gray;
 }
 
-.input-container .radio-option:checked ~ .option-label {
-  border: 2px solid var(--primary);
+.i {
+  opacity: 0;
+}
+
+.check-input:checked ~ .label .i {
+  opacity: 1;
+
 }
 
 .input-container .radio-option:checked ~ .option-label .mqc {
